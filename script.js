@@ -42,13 +42,10 @@ document.addEventListener('DOMContentLoaded', function() {
         galleryContainer.innerHTML = galleryItems
             .filter(item => filter === 'todos' || item.category === filter)
             .map(item => `
-                <div class="gallery-item ${item.category} overflow-hidden rounded-lg shadow-md">
-                    <img src="${item.src}" alt="${item.title}" class="w-full h-64 object-cover transition-transform duration-300 hover:scale-110">
-                    <div class="p-4 bg-white">
-                        <h3 class="font-bold text-lg mb-2">${item.title}</h3>
-                        <p class="text-gray-600 text-sm mb-4">${item.description}</p>
-                        <button class="ver-mas bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition-colors" data-title="${item.title}">Ver más</button>
-                    </div>
+                <div class="gallery-item ${item.category}" data-aos="fade-up">
+                    <img src="${item.src}" alt="${item.title}" class="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer transition-transform duration-300 hover:scale-105">
+                    <p class="mt-2 text-center text-gray-600">${item.title}</p>
+                    <button class="ver-mas mt-2 bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition-colors" data-title="${item.title}">Ver más</button>
                 </div>
             `).join('');
     }
@@ -195,19 +192,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Mapa
-    function initMap() {
-        const location = { lat: 40.416775, lng: -3.703790 }; // Coordenadas de ejemplo (Madrid)
-        const map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 15,
-            center: location,
-        });
-        const marker = new google.maps.Marker({
-            position: location,
-            map: map,
-        });
-    }
-
-    // Llamar a initMap cuando se cargue la API de Google Maps
-    window.initMap = initMap;
+    // Inicializar AOS
+    AOS.init({
+        duration: 1000,
+        once: true,
+    });
 });
