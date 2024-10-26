@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jardines de Roldán - Eventos Inolvidables</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#000000',
+                        secondary: '#FFFFFF',
+                        accent: '#0000FF',
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #000000, #0000FF);
+        }
+        .appear {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        .appear.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Top Banner con Promociones -->
+    <div class="gradient-bg text-white py-2 text-center">
+        <p class="text-sm font-bold">¡Oferta especial! 20% de descuento en eventos de lunes a jueves. <a href="#contacto" class="underline">Contáctanos ahora</a></p>
+    </div>
+
+    <!-- Header con Menú de Navegación Responsivo -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <img src="https://via.placeholder.com/150x50" alt="Jardines de Roldán Logo" class="h-12">
+            <nav class="hidden md:flex space-x-4">
+                <a href="#inicio" class="text-primary hover:text-accent transition-colors">Inicio</a>
+                <a href="#historia" class="text-primary hover:text-accent transition-colors">Nuestra Historia</a>
+                <a href="#servicios" class="text-primary hover:text-accent transition-colors">Servicios</a>
+                <a href="#galeria" class="text-primary hover:text-accent transition-colors">Galería</a>
+                <a href="#testimonios" class="text-primary hover:text-accent transition-colors">Testimonios</a>
+                <a href="#contacto" class="text-primary hover:text-accent transition-colors">Contacto</a>
+            </nav>
+            <button class="md:hidden text-primary" id="mobile-menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <div class="md:hidden hidden" id="mobile-menu">
+            <a href="#inicio" class="block py-2 px-4 text-primary hover:bg-gray-100">Inicio</a>
+            <a href="#historia" class="block py-2 px-4 text-primary hover:bg-gray-100">Nuestra Historia</a>
+            <a href="#servicios" class="block py-2 px-4 text-primary hover:bg-gray-100">Servicios</a>
+            <a href="#galeria" class="block py-2 px-4 text-primary hover:bg-gray-100">Galería</a>
+            <a href="#testimonios" class="block py-2 px-4 text-primary hover:bg-gray-100">Testimonios</a>
+            <a href="#contacto" class="block py-2 px-4 text-primary hover:bg-gray-100">Contacto</a>
+        </div>
+    </header>
+
+    <!-- Hero con Slider Automático -->
+    <section id="inicio" class="relative h-screen">
+        <div class="swiper-container h-full">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1920x1080');">
+                    <div class="absolute inset-0 gradient-bg opacity-75 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <h1 class="text-5xl md:text-7xl font-bold mb-4">Jardines de Roldán</h1>
+                            <p class="text-xl md:text-2xl mb-8">Elegancia y amplitud natural para tus eventos</p>
+                            <a href="#contacto" class="bg-white text-primary hover:bg-accent hover:text-white font-bold py-2 px-4 rounded-full transition-colors duration-300">Reserva ahora</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1920x1080');">
+                    <div class="absolute inset-0 gradient-bg opacity-75 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <h2 class="text-5xl md:text-7xl font-bold mb-4">Eventos Inolvidables</h2>
+                            <p class="text-xl md:text-2xl mb-8">Crea recuerdos que durarán toda la vida</p>
+                            <a href="#servicios" class="bg-white text-primary hover:bg-accent hover:text-white font-bold py-2 px-4 rounded-full transition-colors duration-300">Descubre nuestros servicios</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nuestra Historia -->
+    <section id="historia" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-primary appear">Nuestra Historia</h2>
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2 appear">
+                    <p class="text-gray-700 mb-4">Jardines de Roldán nació en 1995 con la visión de crear un espacio único donde la naturaleza y la elegancia se fusionan para ofrecer el escenario perfecto para todo tipo de eventos. Desde nuestros humildes comienzos, nos hemos convertido en el lugar preferido para bodas, fiestas y eventos corporativos en la región.</p>
+                    <p class="text-gray-700">Con más de 25 años de experiencia, nuestro compromiso con la excelencia y la atención personalizada nos ha permitido crecer y mejorar constantemente, siempre manteniendo la esencia que nos caracteriza: un ambiente natural, acogedor y sofisticado.</p>
+                </div>
+                <div class="md:w-1/2 grid grid-cols-2 gap-4 appear">
+                    <img src="https://via.placeholder.com/300x200" alt="Jardines de Roldán en sus inicios" class="rounded-lg shadow-md">
+                    <img src="https://via.placeholder.com/300x200" alt="Nuestros hermosos jardines" class="rounded-lg shadow-md">
+                    <img src="https://via.placeholder.com/300x200" alt="Salón principal" class="rounded-lg shadow-md">
+                    <img src="https://via.placeholder.com/300x200" alt="Evento en Jardines de Roldán" class="rounded-lg shadow-md">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" class="py-16 gradient-bg">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-white appear">Nuestros Servicios</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center appear">
+                    <i class="fas fa-ring text-5xl text-accent mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2 text-primary">Bodas</h3>
+                    <p class="text-gray-700">Haz realidad la boda de tus sueños en nuestros hermosos jardines.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center appear">
+                    <i class="fas fa-birthday-cake text-5xl text-accent mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2 text-primary">Fiestas de 15</h3>
+                    <p class="text-gray-700">Celebra tus 15 años con una fiesta inolvidable en un entorno mágico.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center appear">
+                    <i class="fas fa-briefcase text-5xl text-accent mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2 text-primary">Eventos Empresariales</h3>
+                    <p class="text-gray-700">Impresiona a tus clientes y motiva a tu equipo con nuestros espacios versátiles.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center appear">
+                    <i class="fas fa-chalkboard-teacher text-5xl text-accent mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2 text-primary">Workshops</h3>
+                    <p class="text-gray-700">Organiza talleres y seminarios en un ambiente inspirador y tranquilo.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center appear">
+                    <i class="fas fa-glass-cheers text-5xl text-accent mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2 text-primary">Cumpleaños</h3>
+                    <p class="text-gray-700">Festeja tu cumpleaños rodeado de naturaleza y comodidad.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center appear">
+                    <i class="fas fa-child text-5xl text-accent mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2 text-primary">Eventos Infantiles</h3>
+                    <p class="text-gray-700">Crea momentos mágicos para los más pequeños en nuestros espacios seguros.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería -->
+    <section id="galeria" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-primary appear">Galería de Eventos</h2>
+            <div class="flex justify-center mb-8 appear">
+                <button class="filter-btn active mx-2 px-4 py-2 rounded-full bg-primary text-white hover:bg-accent transition-colors" data-filter="all">Todos</button>
+                <button class="filter-btn mx-2 px-4 py-2 rounded-full bg-gray-200 text-primary hover:bg-accent hover:text-white transition-colors" data-filter="bodas">Bodas</button>
+                <button class="filter-btn mx-2 px-4 py-2 rounded-full bg-gray-200 text-primary hover:bg-accent hover:text-white transition-colors" data-filter="quince">Quinceañeras</button>
+                <button class="filter-btn mx-2 px-4 py-2 rounded-full bg-gray-200 text-primary hover:bg-accent hover:text-white transition-colors" data-filter="empresarial">Empresarial</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="gallery-container">
+                <!-- Las imágenes se cargarán dinámicamente con JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal para la galería -->
+    <div id="gallery-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+            <h3 id="modal-title" class="text-2xl font-bold mb-4 text-primary"></h3>
+            <div id="modal-content" class="grid grid-cols-2 gap-4 mb-4"></div>
+            <p id="modal-description" class="text-gray-700 mb-4"></p>
+            <button id="close-modal" 
+                class="bg-primary text-white px-4 py-2 rounded-full hover:bg-accent transition-colors duration-300">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- Testimonios -->
+    <section id="testimonios" class="py-16 gradient-bg">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-white appear">Lo que dicen nuestros clientes</h2>
+            <div class="swiper-container testimonials-slider appear">
+                <div class="swiper-wrapper">
+                    <!-- Los testimonios se cargarán dinámicamente con JavaScript -->
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner Publicitario -->
+    <section class="bg-accent py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-white mb-4 appear">¿Listo para crear recuerdos inolvidables?</h2>
+            <p class="text-xl text-white mb-8 appear">Reserva ahora y obtén un 10% de descuento en tu próximo evento</p>
+            <a href="#contacto"
+                class="bg-white text-primary px-6 py-3 rounded-full text-lg font-bold hover:bg-primary hover:text-white transition-colors duration-300 appear">¡Reserva
+                ya!</a>
+        </div>
+    </section>
+
+    <!-- Formulario de Contacto -->
+    <section id="contacto" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12 text-primary appear">Contáctanos</h2>
+            <div class="flex flex-col md:flex-row gap-8">
+                <form id="contact-form" class="md:w-1/2 appear">
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-700 font-bold mb-2">Nombre</label>
+                        <input type="text" id="name" name="name" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent">
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 font-bold mb-2">Email</label>
+                        <input type="email" id="email" name="email" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent">
+                    </div>
+                    <div class="mb-4">
+                        <label for="message" class="block text-gray-700 font-bold mb-2">Mensaje</label>
+                        <textarea id="message" name="message" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
+                            rows="4"></textarea>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded-md transition-colors duration-300">Enviar
+                        Mensaje</button>
+                </form>
+                <div class="md:w-1/2 appear">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12676.731774881815!2d-5.986661687133789!3d37.38300214259037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd126c1114be6291%3A0x34f018621cfe5648!2sJardines%20de%20Rold%C3%A1n!5e0!3m2!1ses!2ses!4v1619794741018!5m2!1ses!2ses"
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-bold mb-4">Contacto</h3>
+                    <p>Email: info@jardinesderoldan.com</p>
+                    <p>Teléfono: +34 123 456 789</p>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-4">Síguenos</h3>
+                    <div class="flex justify-center space-x-4">
+                        <a href="#" class="hover:text-accent transition-colors"><i class="fab fa-facebook-f fa-2x"></i></a>
+                        <a href="#" class="hover:text-accent transition-colors"><i class="fab fa-instagram fa-2x"></i></a>
+                        <a href="#" class="hover:text-accent transition-colors"><i class="fab fa-twitter fa-2x"></i></a>
+                    </div>
+                </div>
+                <div class="text-center md:text-right">
+                    <h3 class="text-2xl font-bold mb-4">Horario</h3>
+                    <p>Lunes a Viernes: 9:00 - 18:00</p>
+                    <p>Sábados y Domingos: 10:00 - 15:00</p>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                <p>&copy; 2023 Jardines de Roldán. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
