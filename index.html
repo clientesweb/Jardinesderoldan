@@ -21,6 +21,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <script>
         tailwind.config = {
             theme: {
@@ -39,6 +41,9 @@
     <style>
         body {
             overflow-x: hidden;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #2C5F2D 0%, #97BC62 100%);
         }
         .modern-bg {
             background-color: #f0f4f8;
@@ -105,13 +110,14 @@
     </div>
 
     <!-- Banner promocional con iconos de redes sociales -->
-    <div class="bg-primary text-white py-2 promo-banner">
+    <div class="gradient-bg text-white py-2 promo-banner">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <p class="text-sm">¡Oferta especial! 10% de descuento en eventos de verano.</p>
             <div class="flex space-x-4">
                 <a href="#" class="text-white hover:text-secondary transition-colors"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" class="text-white hover:text-secondary transition-colors"><i class="fab fa-instagram"></i></a>
                 <a href="#" class="text-white hover:text-secondary transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white hover:text-secondary transition-colors"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
     </div>
@@ -164,6 +170,7 @@
                     <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                         <div class="text-center text-white">
                             <h2 class="text-4xl md:text-6xl font-bold mb-4">Bodas de Ensueño</h2>
+                            
                             <p class="text-xl md:text-2xl mb-8">El escenario perfecto para tu día especial</p>
                             <div class="space-x-4">
                                 <a href="#contacto" class="bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded-full transition-colors duration-300">Reserva Ahora</a>
@@ -177,10 +184,8 @@
         </div>
     </section>
 
-    
-
     <!-- Sección Nosotros -->
-    <section id="nosotros" class="py-16">
+    <section id="nosotros" class="py-16" data-aos="fade-up">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-12 text-primary">Sobre Nosotros</h2>
             <div class="flex flex-col md:flex-row items-center gap-8">
@@ -189,7 +194,7 @@
                 </div>
                 <div class="md:w-1/2">
                     <p class="text-gray-700 mb-4">Jardines de Roldán es un oasis de belleza natural y elegancia, dedicado a crear experiencias inolvidables para nuestros clientes. Con más de dos décadas de experiencia, nos hemos convertido en el lugar preferido para celebrar los momentos más importantes de la vida.</p>
-                    <p class="text-gray-700 mb-4">Nuestros amplios jardines, instalaciones modernas y equipo profesional se combinan para ofrecer el escenario perfecto para bodas, quinceañeras, eventos corporativos y todo tipo de celebraciones. En Jardines de Roldán, cada detalle cuenta y cada evento es único.</p>
+                    <p class="text-gray-700 mb-4">Nuestras instalaciones incluyen un amplio salón de 300m² y un hermoso jardín arbolado de 4.000m², ofreciendo el escenario perfecto para bodas, quinceañeras, eventos corporativos y todo tipo de celebraciones. En Jardines de Roldán, cada detalle cuenta y cada evento es único.</p>
                     <p class="text-gray-700">Nos enorgullece ser parte de las historias de nuestros clientes, ayudándoles a crear recuerdos que durarán toda la vida en un entorno natural incomparable.</p>
                 </div>
             </div>
@@ -197,7 +202,7 @@
     </section>
 
     <!-- Servicios -->
-    <section id="servicios" class="py-16 bg-gray-100">
+    <section id="servicios" class="py-16 bg-gray-100" data-aos="fade-up">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-12 text-primary">Nuestros Servicios</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -236,7 +241,7 @@
     </section>
 
     <!-- Galería -->
-    <section id="galeria" class="py-16">
+    <section id="galeria" class="py-16" data-aos="fade-up">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-12 text-primary">Galería de Eventos</h2>
             <div class="mb-8 flex flex-wrap justify-center gap-4">
@@ -275,7 +280,7 @@
     </div>
 
     <!-- Testimonios -->
-    <section id="testimonios" class="py-16 bg-gray-100">
+    <section id="testimonios" class="py-16 bg-gray-100" data-aos="fade-up">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-12 text-primary">Lo que dicen nuestros clientes</h2>
             <div class="swiper testimonials-slider">
@@ -288,13 +293,13 @@
     </section>
 
     <!-- FAQs -->
-    <section id="faqs" class="py-16">
+    <section id="faqs" class="py-16" data-aos="fade-up">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-12 text-primary">Preguntas Frecuentes</h2>
             <div class="space-y-4 max-w-3xl mx-auto">
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <h3 class="text-xl font-bold mb-2 text-primary">¿Cuál es la capacidad máxima de invitados?</h3>
-                    <p class="text-gray-600">Nuestra capacidad máxima es de 300 invitados, dependiendo del tipo de evento y la disposición elegida.</p>
+                    <p class="text-gray-600">Nuestra capacidad máxima es de 300 invitados en el salón principal, y hasta 500 invitados en nuestro amplio jardín de 4.000m².</p>
                 </div>
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <h3 class="text-xl font-bold mb-2 text-primary">¿Ofrecen servicios de catering?</h3>
@@ -309,7 +314,7 @@
     </section>
 
     <!-- Formulario de Contacto -->
-    <section id="contacto" class="py-16 bg-gray-100">
+    <section id="contacto" class="py-16 bg-gray-100" data-aos="fade-up">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-12 text-primary">Contáctanos</h2>
             <div class="flex flex-col md:flex-row gap-8">
@@ -329,20 +334,22 @@
                     <button type="submit" class="w-full bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded-md transition-colors duration-300">Enviar Mensaje</button>
                 </form>
                 <div class="md:w-1/2">
-                    <div id="map" class="w-full h-64 md:h-full rounded-lg overflow-hidden"></div>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3346.1776183271346!2d-60.91324638481385!3d-32.98199098090903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b6a9e4c6b1b2f5%3A0x7b5f5c8b6b1b1b1b!2sLos%20Caballeros%202105%2C%20Rold%C3%A1n%2C%20Santa%20Fe!5e0!3m2!1ses-419!2sar!4v1623456789012!5m2!1ses-419!2sar" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-primary text-white py-8">
+    <footer class="gradient-bg text-white py-8">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                     <h3 class="text-2xl font-bold mb-4">Contacto</h3>
                     <p>Email: info@jardinesderoldan.com</p>
-                    <p>Teléfono: +34 123 456 789</p>
+                    <p>Te
+                    léfono: +54 341 278-5370</p>
+                    <p>Teléfono: +54 341 234-2104</p>
                 </div>
                 <div>
                     <h3 class="text-2xl font-bold mb-4">Síguenos</h3>
@@ -353,9 +360,10 @@
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-2xl font-bold mb-4">Horario</h3>
-                    <p>Lunes a Viernes: 9:00 - 18:00</p>
-                    <p>Sábados y Domingos: 10:00 - 15:00</p>
+                    <h3 class="text-2xl font-bold mb-4">Ubicación</h3>
+                    <p>Los Caballeros 2105</p>
+                    <p>Cruce entre ruta 9 y AO12</p>
+                    <p>Roldán, Santa Fe, Argentina</p>
                 </div>
             </div>
             <div class="mt-8 text-center">
@@ -366,12 +374,11 @@
     </footer>
 
     <!-- Botón flotante de WhatsApp -->
-    <a href="https://wa.me/1234567890" class="fixed bottom-4 right-4 bg-green-500 text-white rounded-full p-3 hover:bg-green-600 transition-colors duration-300" target="_blank" rel="noopener noreferrer">
+    <a href="https://wa.me/543412785370" class="fixed bottom-4 right-4 bg-green-500 text-white rounded-full p-3 hover:bg-green-600 transition-colors duration-300" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp fa-2x"></i>
     </a>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap" async defer></script>
     <script src="script.js"></script>
 </body>
 </html>
