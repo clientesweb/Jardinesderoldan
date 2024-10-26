@@ -54,18 +54,27 @@ document.addEventListener('DOMContentLoaded', function() {
     // Galería Filtrable
     const filterBtns = document.querySelectorAll('.filter-btn');
     const galleryContainer = document.getElementById('gallery-container');
+    const loadMoreBtn = document.getElementById('load-more');
+    let currentItems = 6;
 
     const galleryItems = [
-        { src: 'https://via.placeholder.com/400x300', category: 'bodas', title: 'Boda Romántica' },
-        { src: 'https://via.placeholder.com/400x300', category: 'quince', title: 'Fiesta de 15 Años' },
-        { src: 'https://via.placeholder.com/400x300', category: 'empresarial', title: 'Conferencia Anual' },
-        { src: 'https://via.placeholder.com/400x300', category: 'bodas', title: 'Ceremonia al Aire Libre' },
-        { src: 'https://via.placeholder.com/400x300', category: 'quince', title: 'Quinceañera Elegante' },
-        { src: 'https://via.placeholder.com/400x300', category: 'empresarial', title: 'Lanzamiento de Producto' },
+        { src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'bodas', title: '
+Boda Romántica' },
+        { src: 'https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'quince', title: 'Fiesta de 15 Años' },
+        { src: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'empresarial', title: 'Conferencia Anual' },
+        { src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'bodas', title: 'Ceremonia al Aire Libre' },
+        { src: 'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'quince', title: 'Quinceañera Elegante' },
+        { src: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'empresarial', title: 'Lanzamiento de Producto' },
+        { src: 'https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'bodas', title: 'Boda en la Playa' },
+        { src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'quince', title: 'Fiesta de 15 Temática' },
+        { src: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'empresarial', title: 'Seminario Ejecutivo' },
+        { src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'bodas', title: 'Boda de Invierno' },
+        { src: 'https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'quince', title: 'Quinceañera Moderna' },
+        { src: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'empresarial', title: 'Feria de Negocios' },
     ];
 
     function renderGallery(items) {
-        galleryContainer.innerHTML = items.map(item => `
+        galleryContainer.innerHTML = items.slice(0, currentItems).map(item => `
             <div class="gallery-item ${item.category} appear">
                 <img src="${item.src}" alt="${item.title}" class="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer transition-transform duration-300 hover:scale-105">
                 <p class="mt-2 text-center text-gray-700">${item.title}</p>
@@ -83,9 +92,27 @@ document.addEventListener('DOMContentLoaded', function() {
             filterBtns.forEach(b => b.classList.remove('active', 'bg-primary', 'text-white'));
             btn.classList.add('active', 'bg-primary', 'text-white');
             
+            currentItems = 6;
             const filteredItems = filter === 'all' ? galleryItems : galleryItems.filter(item => item.category === filter);
             renderGallery(filteredItems);
+            
+            if (filteredItems.length <= currentItems) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'inline-block';
+            }
         });
+    });
+
+    loadMoreBtn.addEventListener('click', () => {
+        currentItems += 3;
+        const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+        const filteredItems = activeFilter === 'all' ? galleryItems : galleryItems.filter(item => item.category === activeFilter);
+        renderGallery(filteredItems);
+        
+        if (filteredItems.length <= currentItems) {
+            loadMoreBtn.style.display = 'none';
+        }
     });
 
     // Galería Modal
@@ -94,20 +121,42 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalContent = document.getElementById('modal-content');
     const modalDescription = document.getElementById('modal-description');
     const closeModal = document.getElementById('close-modal');
+    let gallerySlider;
 
     galleryContainer.addEventListener('click', (e) => {
         const galleryItem = e.target.closest('.gallery-item');
         if (galleryItem) {
             const category = galleryItem.classList[1];
             const title = galleryItem.querySelector('p').textContent;
-            const src = galleryItem.querySelector('img').src;
+            const clickedSrc = galleryItem.querySelector('img').src;
 
             modalTitle.textContent = title;
-            modalContent.innerHTML = `<img src="${src}" alt="${title}" class="w-full rounded-lg">`;
+            
+            const filteredItems = galleryItems.filter(item => item.category === category);
+            const startIndex = filteredItems.findIndex(item => item.src === clickedSrc);
+            
+            modalContent.querySelector('.swiper-wrapper').innerHTML = filteredItems.map(item => `
+                <div class="swiper-slide">
+                    <img src="${item.src}" alt="${item.title}" class="w-full rounded-lg">
+                </div>
+            `).join('');
+
             modalDescription.textContent = `Esta imagen pertenece a la categoría de ${category}.`;
 
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
+
+            if (gallerySlider) {
+                gallerySlider.destroy();
+            }
+
+            gallerySlider = new Swiper('.gallery-slider', {
+                initialSlide: startIndex,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
         }
     });
 
