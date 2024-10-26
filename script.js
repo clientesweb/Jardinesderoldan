@@ -1,10 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Preloader
-    const preloader = document.querySelector('.preloader');
-    window.addEventListener('load', () => {
-        preloader.classList.add('hidden');
-    });
-
     // Menú móvil
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -14,40 +8,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Hero Slider
-    new Swiper('.swiper-container', {
-        loop: true,
-        autoplay: {
-            delay: 5000,
-        },
-        effect: 'fade',
-        fadeEffect: {
-            crossFade: true
+    new Swiper('.hero-slider', {
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
         },
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
         },
-    });
-
-    // Testimonios Slider
-    new Swiper('.testimonials-slider', {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
         autoplay: {
             delay: 5000,
-        },
-        breakpoints: {
-            640: {
-                slidesPerView: 2,
-            },
-            1024: {
-                slidesPerView: 3,
-            },
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
         },
     });
 
@@ -58,49 +29,35 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentItems = 6;
 
     const galleryItems = [
-        { src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'bodas', title: '
-Boda Romántica' },
+        { src: 'https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'bodas', title: 'Boda Romántica' },
         { src: 'https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'quince', title: 'Fiesta de 15 Años' },
         { src: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'empresarial', title: 'Conferencia Anual' },
         { src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'bodas', title: 'Ceremonia al Aire Libre' },
         { src: 'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'quince', title: 'Quinceañera Elegante' },
         { src: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'empresarial', title: 'Lanzamiento de Producto' },
-        { src: 'https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'bodas', title: 'Boda en la Playa' },
-        { src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'quince', title: 'Fiesta de 15 Temática' },
-        { src: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'empresarial', title: 'Seminario Ejecutivo' },
-        { src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'bodas', title: 'Boda de Invierno' },
-        { src: 'https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'quince', title: 'Quinceañera Moderna' },
-        { src: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'empresarial', title: 'Feria de Negocios' },
+        // Añade más imágenes aquí...
     ];
 
     function renderGallery(items) {
         galleryContainer.innerHTML = items.slice(0, currentItems).map(item => `
-            <div class="gallery-item ${item.category} appear">
+            <div class="gallery-item ${item.category}">
                 <img src="${item.src}" alt="${item.title}" class="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer transition-transform duration-300 hover:scale-105">
-                <p class="mt-2 text-center text-gray-700">${item.title}</p>
+                <p class="mt-2 text-center text-gray-600">${item.title}</p>
             </div>
         `).join('');
-        appearElements();
     }
 
     renderGallery(galleryItems);
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            const filter = btn.getAttribute('data-filter');
-            
-            filterBtns.forEach(b => b.classList.remove('active', 'bg-primary', 'text-white'));
+            filterBtns.forEach(btn => btn.classList.remove('active', 'bg-primary', 'text-white'));
             btn.classList.add('active', 'bg-primary', 'text-white');
-            
-            currentItems = 6;
+            const filter = btn.getAttribute('data-filter');
             const filteredItems = filter === 'all' ? galleryItems : galleryItems.filter(item => item.category === filter);
+            currentItems = 6;
             renderGallery(filteredItems);
-            
-            if (filteredItems.length <= currentItems) {
-                loadMoreBtn.style.display = 'none';
-            } else {
-                loadMoreBtn.style.display = 'inline-block';
-            }
+            loadMoreBtn.style.display = filteredItems.length > 6 ? 'inline-block' : 'none';
         });
     });
 
@@ -109,8 +66,7 @@ Boda Romántica' },
         const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
         const filteredItems = activeFilter === 'all' ? galleryItems : galleryItems.filter(item => item.category === activeFilter);
         renderGallery(filteredItems);
-        
-        if (filteredItems.length <= currentItems) {
+        if (currentItems >= filteredItems.length) {
             loadMoreBtn.style.display = 'none';
         }
     });
@@ -129,19 +85,18 @@ Boda Romántica' },
             const category = galleryItem.classList[1];
             const title = galleryItem.querySelector('p').textContent;
             const clickedSrc = galleryItem.querySelector('img').src;
-
+            
             modalTitle.textContent = title;
             
             const filteredItems = galleryItems.filter(item => item.category === category);
             const startIndex = filteredItems.findIndex(item => item.src === clickedSrc);
             
-            modalContent.querySelector('.swiper-wrapper').innerHTML = filteredItems.map(item => `
-                <div class="swiper-slide">
-                    <img src="${item.src}" alt="${item.title}" class="w-full rounded-lg">
-                </div>
-            `).join('');
-
-            modalDescription.textContent = `Esta imagen pertenece a la categoría de ${category}.`;
+            modalContent.querySelector('.swiper-wrapper').innerHTML = 
+                filteredItems.map(item => `
+                    <div class="swiper-slide">
+                        <img src="${item.src}" alt="${item.title}" class="w-full h-full object-contain">
+                    </div>
+                `).join('');
 
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -156,6 +111,10 @@ Boda Romántica' },
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                 },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
             });
         }
     });
@@ -165,87 +124,72 @@ Boda Romántica' },
         document.body.style.overflow = 'auto';
     });
 
-    // Cerrar modal al hacer clic fuera de él
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-    });
-
     // Testimonios
     const testimonials = [
-        { name: 'María García', text: 'Nuestra boda fue un sueño hecho realidad en Jardines de Roldán.' },
-        { name: 'Juan Pérez', text: 'El evento corporativo fue un éxito gracias al increíble espacio y servicio.' },
-        { name: 'Ana Martínez', text: 'Celebramos el cumpleaños de mi madre y fue una experiencia inolvidable.' },
-        { name: 'Carlos Rodríguez', text: 'La fiesta de 15 de mi hija superó todas nuestras expectativas.' },
-        { name: 'Laura Sánchez', text: 'Nuestro workshop fue muy productivo gracias al ambiente inspirador.' },
+        { name: "Ana García", text: "¡Increíble experiencia! Nuestra boda fue perfecta gracias al equipo de Jardines de Roldán.", avatar: "https://i.pravatar.cc/150?img=1" },
+        { name: "Carlos Rodríguez", text: "La fiesta de 15 de mi hija fue un éxito total. El lugar es hermoso y el servicio excelente.", avatar: "https://i.pravatar.cc/150?img=2" },
+        { name: "Elena Martínez", text: "Nuestro evento corporativo dejó a todos impresionados. Definitivamente volveremos a elegir Jardines de Roldán.", avatar: "https://i.pravatar.cc/150?img=3" },
     ];
 
-    const testimonialsWrapper = document.querySelector('.testimonials-slider .swiper-wrapper');
-    testimonialsWrapper.innerHTML = testimonials.map(testimonial => `
-        <div class="swiper-slide">
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <p class="text-gray-700 mb-4">"${testimonial.text}"</p>
-                <p class="font-bold text-primary">${testimonial.name}</p>
+    const testimonialsContainer = document.querySelector('.testimonials-slider .swiper-wrapper');
+    testimonials.forEach(testimonial => {
+        testimonialsContainer.innerHTML += `
+            <div class="swiper-slide">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <img src="${testimonial.avatar}" alt="${testimonial.name}" class="w-20 h-20 rounded-full mx-auto mb-4">
+                    <p class="text-gray-600 mb-4">"${testimonial.text}"</p>
+                    <p class="font-bold text-primary">${testimonial.name}</p>
+                </div>
             </div>
-        </div>
-    `).join('');
-
-    // Formulario de Contacto
-    const form = document.getElementById('contact-form');
-
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const formData = new FormData(form);
-        
-        try {
-            const response = await fetch('https://formspree.io/f/your-form-id', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-            
-            if (response.ok) {
-                alert('Mensaje enviado con éxito. Nos pondremos en contacto contigo pronto.');
-                form.reset();
-            } else {
-                throw new Error('Error al enviar el mensaje');
-            }
-        } catch (error) {
-            alert('Hubo un problema al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.');
-        }
+        `;
     });
 
-    // Efectos de aparición
-    function appearElements() {
-        const elements = document.querySelectorAll('.appear');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
+    new Swiper('.testimonials-slider', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+            },
+            1024: {
+                slidesPerView: 3,
+            },
+        },
+    });
 
-        elements.forEach(element => {
-            observer.observe(element);
+    // Formulario de contacto
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Aquí puedes agregar la lógica para enviar el formulario
+        alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
+        contactForm.reset();
+    });
+
+    // Mapa
+    function initMap() {
+        const location = { lat: 40.416775, lng: -3.703790 }; // Coordenadas de ejemplo
+        const map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: location,
+        });
+        const marker = new google.maps.Marker({
+            position: location,
+            map: map,
         });
     }
 
-    appearElements();
-
-    // Smooth scrolling para enlaces internos
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
+    // Header con efecto de scroll
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            header.classList.add('bg-white', 'shadow-md');
+        } else {
+            header.classList.remove('bg-white', 'shadow-md');
+        }
     });
 });
