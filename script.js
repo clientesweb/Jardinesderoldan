@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Preloader
+    const preloader = document.querySelector('.preloader');
+    window.addEventListener('load', () => {
+        preloader.classList.add('hidden');
+    });
+
     // Menú móvil
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -16,6 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
         effect: 'fade',
         fadeEffect: {
             crossFade: true
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
         },
     });
 
@@ -57,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function renderGallery(items) {
         galleryContainer.innerHTML = items.map(item => `
             <div class="gallery-item ${item.category} appear">
-                <img src="${item.src}" alt="${item.title}" class="w-full h-64 object-cover rounded-lg shadow-md">
+                <img src="${item.src}" alt="${item.title}" class="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer transition-transform duration-300 hover:scale-105">
                 <p class="mt-2 text-center text-gray-700">${item.title}</p>
             </div>
         `).join('');
@@ -97,17 +107,20 @@ document.addEventListener('DOMContentLoaded', function() {
             modalDescription.textContent = `Esta imagen pertenece a la categoría de ${category}.`;
 
             modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
         }
     });
 
     closeModal.addEventListener('click', () => {
         modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
     });
 
     // Cerrar modal al hacer clic fuera de él
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
             modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
         }
     });
 
@@ -176,4 +189,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     appearElements();
+
+    // Smooth scrolling para enlaces internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
 });
