@@ -13,6 +13,21 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileMenu.classList.toggle('hidden');
     });
 
+    // Hero Slider
+    new Swiper('.hero-slider', {
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        autoplay: {
+            delay: 5000,
+        },
+    });
+
     // Galería
     const galleryContainer = document.getElementById('gallery-container');
 
@@ -131,11 +146,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Formulario de contacto
     const contactForm = document.getElementById('contact-form');
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        // Aquí puedes agregar la lógica para enviar el formulario
-        alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
-        contactForm.reset();
+        const formData = new FormData(contactForm);
+        try {
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            const result = await response.json();
+            if (response.ok) {
+                alert('Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.');
+                contactForm.reset();
+            } else {
+                throw new Error(result.error);
+            }
+        } catch (error) {
+            alert('Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.');
+            console.error('Error:', error);
+        }
     });
 
     // Mapa
