@@ -15,10 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Hero Slider
     new Swiper('.hero-slider', {
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
@@ -38,19 +34,39 @@ document.addEventListener('DOMContentLoaded', function() {
         { src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'bodas', title: 'Ceremonia al Aire Libre', description: 'Boda íntima rodeada de naturaleza.' },
         { src: 'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'quince', title: 'Quinceañera Elegante', description: 'Fiesta de 15 con temática de princesa.' },
         { src: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'empresarial', title: 'Lanzamiento de Producto', description: 'Presentación de nuevo producto en nuestro salón principal.' },
+        { src: 'https://images.unsplash.com/photo-1532117892888-38948e152b3a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'cumpleanos', title: 'Fiesta de Cumpleaños', description: 'Celebración de cumpleaños con amigos y familia.' },
+        { src: 'https://images.unsplash.com/photo-1472162072942-cd5147eb3902?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'infantiles', title: 'Fiesta Infantil', description: 'Diversión garantizada para los más pequeños.' },
     ];
 
-    function renderGallery() {
-        galleryContainer.innerHTML = galleryItems.map(item => `
-            <div class="gallery-item ${item.category}">
-                <img src="${item.src}" alt="${item.title}" class="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer transition-transform duration-300 hover:scale-105">
-                <p class="mt-2 text-center text-gray-600">${item.title}</p>
-                <button class="ver-mas mt-2 bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition-colors" data-title="${item.title}">Ver más</button>
-            </div>
-        `).join('');
+    function renderGallery(filter = 'todos') {
+        galleryContainer.innerHTML = galleryItems
+            .filter(item => filter === 'todos' || item.category === filter)
+            .map(item => `
+                <div class="gallery-item ${item.category}">
+                    <img src="${item.src}" alt="${item.title}" class="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer transition-transform duration-300 hover:scale-105">
+                    <p class="mt-2 text-center text-gray-600">${item.title}</p>
+                    <button class="ver-mas mt-2 bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition-colors" data-title="${item.title}">Ver más</button>
+                </div>
+            `).join('');
     }
 
     renderGallery();
+
+    // Filtros de galería
+    document.querySelectorAll('.filtro-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const filter = button.getAttribute('data-filtro');
+            renderGallery(filter);
+            
+            // Actualizar estilos de los botones
+            document.querySelectorAll('.filtro-btn').forEach(btn => {
+                btn.classList.remove('bg-primary', 'text-white');
+                btn.classList.add('bg-white', 'text-primary');
+            });
+            button.classList.remove('bg-white', 'text-primary');
+            button.classList.add('bg-primary', 'text-white');
+        });
+    });
 
     // Galería Modal
     const modal = document.getElementById('gallery-modal');
@@ -69,6 +85,12 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const modalContent = document.querySelector('.gallery-slider .swiper-wrapper');
             modalContent.innerHTML = `
+                <div class="swiper-slide">
+                    <img src="${item.src}" alt="${item.title}" class="w-full h-full object-contain">
+                </div>
+                <div class="swiper-slide">
+                    <img src="${item.src}" alt="${item.title}" class="w-full h-full object-contain">
+                </div>
                 <div class="swiper-slide">
                     <img src="${item.src}" alt="${item.title}" class="w-full h-full object-contain">
                 </div>
