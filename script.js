@@ -13,26 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileMenu.classList.toggle('hidden');
     });
 
-    // Hero Slider
-    new Swiper('.hero-slider', {
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        autoplay: {
-            delay: 5000,
-        },
-    });
-
-    // Galería Filtrable
-    const filterBtns = document.querySelectorAll('.filter-btn');
+    // Galería
     const galleryContainer = document.getElementById('gallery-container');
-    const loadMoreBtn = document.getElementById('load-more');
-    let currentItems = 6;
 
     const galleryItems = [
         { src: 'https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'bodas', title: 'Boda Romántica', description: 'Una hermosa ceremonia al atardecer en nuestros jardines.' },
@@ -41,70 +23,41 @@ document.addEventListener('DOMContentLoaded', function() {
         { src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'bodas', title: 'Ceremonia al Aire Libre', description: 'Boda íntima rodeada de naturaleza.' },
         { src: 'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'quince', title: 'Quinceañera Elegante', description: 'Fiesta de 15 con temática de princesa.' },
         { src: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'empresarial', title: 'Lanzamiento de Producto', description: 'Presentación de nuevo producto en nuestro salón principal.' },
-        { src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'bodas', title: 'Recepción Elegante', description: 'Cena de boda con decoración sofisticada.' },
-        { src: 'https://images.unsplash.com/photo-1472653431158-6364773b2a56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'quince', title: 'Baile de Quinceañera', description: 'Momento especial del vals de la quinceañera.' },
-        { src: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'empresarial', title: 'Networking Empresarial', description: 'Evento de networking en nuestros jardines.' },
     ];
 
-    function renderGallery(items) {
-        galleryContainer.innerHTML = items.slice(0, currentItems).map(item => `
+    function renderGallery() {
+        galleryContainer.innerHTML = galleryItems.map(item => `
             <div class="gallery-item ${item.category}">
                 <img src="${item.src}" alt="${item.title}" class="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer transition-transform duration-300 hover:scale-105">
                 <p class="mt-2 text-center text-gray-600">${item.title}</p>
-                <button class="ver-mas mt-2 bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition-colors" data-category="${item.category}" data-title="${item.title}">Ver más</button>
+                <button class="ver-mas mt-2 bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition-colors" data-title="${item.title}">Ver más</button>
             </div>
         `).join('');
     }
 
-    renderGallery(galleryItems);
-
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(btn => btn.classList.remove('active', 'bg-primary', 'text-white'));
-            btn.classList.add('active', 'bg-primary', 'text-white');
-            const filter = btn.getAttribute('data-filter');
-            const filteredItems = filter === 'all' ? galleryItems : galleryItems.filter(item => item.category === filter);
-            currentItems = 6;
-            renderGallery(filteredItems);
-            loadMoreBtn.style.display = filteredItems.length > 6 ? 'inline-block' : 'none';
-        });
-    });
-
-    loadMoreBtn.addEventListener('click', () => {
-        currentItems += 3;
-        const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
-        const filteredItems = activeFilter === 'all' ? galleryItems : galleryItems.filter(item => item.category === activeFilter);
-        renderGallery(filteredItems);
-        if (currentItems >= filteredItems.length) {
-            loadMoreBtn.style.display = 'none';
-        }
-    });
+    renderGallery();
 
     // Galería Modal
     const modal = document.getElementById('gallery-modal');
     const modalTitle = document.getElementById('modal-title');
-    const modalContent = document.getElementById('modal-content');
     const modalDescription = document.getElementById('modal-description');
     const closeModal = document.getElementById('close-modal');
     let gallerySlider;
 
     galleryContainer.addEventListener('click', (e) => {
         if (e.target.classList.contains('ver-mas')) {
-            const category = e.target.getAttribute('data-category');
             const title = e.target.getAttribute('data-title');
+            const item = galleryItems.find(item => item.title === title);
             
-            modalTitle.textContent = title;
-            
-            const filteredItems = galleryItems.filter(item => item.category === category);
-            const clickedItem = filteredItems.find(item => item.title === title);
+            modalTitle.textContent = item.title;
+            modalDescription.textContent = item.description;
             
             const modalContent = document.querySelector('.gallery-slider .swiper-wrapper');
-            modalContent.innerHTML = filteredItems.map(item => `
+            modalContent.innerHTML = `
                 <div class="swiper-slide">
                     <img src="${item.src}" alt="${item.title}" class="w-full h-full object-contain">
-                    <p class="mt-4 text-gray-600">${item.description}</p>
                 </div>
-            `).join('');
+            `;
 
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -114,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             gallerySlider = new Swiper('.gallery-slider', {
-                initialSlide: filteredItems.indexOf(clickedItem),
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
