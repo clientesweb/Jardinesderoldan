@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Preloader
+    const preloader = document.getElementById('preloader');
+    window.addEventListener('load', () => {
+        preloader.style.display = 'none';
+    });
+
     // Menú móvil
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -29,16 +35,15 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentItems = 6;
 
     const galleryItems = [
-        { src: 'https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'bodas', title: 'Boda Romántica' },
-        { src: 'https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'quince', title: 'Fiesta de 15 Años' },
-        { src: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'empresarial', title: 'Conferencia Anual' },
-        { src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'bodas', title: 'Ceremonia al Aire Libre' },
-        { src: 'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'quince', title: 'Quinceañera Elegante' },
-        { src: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'empresarial', title: 'Lanzamiento de Producto' },
-        { src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'bodas', title: 'Recepción Elegante' },
-        { src: 'https://images.unsplash.com/photo-1472653431158-6364773b2a56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'quince', title: 'Baile de Quinceañera' },
-        { src: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'empresarial', title: 'Networking Empresarial' },
-        // Añade más imágenes aquí...
+        { src: 'https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'bodas', title: 'Boda Romántica', description: 'Una hermosa ceremonia al atardecer en nuestros jardines.' },
+        { src: 'https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'quince', title: '15 Años Mágicos', description: 'Celebración de quinceañera con decoración de ensueño.' },
+        { src: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'empresarial', title: 'Conferencia Anual', description: 'Evento corporativo con las mejores instalaciones.' },
+        { src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'bodas', title: 'Ceremonia al Aire Libre', description: 'Boda íntima rodeada de naturaleza.' },
+        { src: 'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'quince', title: 'Quinceañera Elegante', description: 'Fiesta de 15 con temática de princesa.' },
+        { src: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'empresarial', title: 'Lanzamiento de Producto', description: 'Presentación de nuevo producto en nuestro salón principal.' },
+        { src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'bodas', title: 'Recepción Elegante', description: 'Cena de boda con decoración sofisticada.' },
+        { src: 'https://images.unsplash.com/photo-1472653431158-6364773b2a56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'quince', title: 'Baile de Quinceañera', description: 'Momento especial del vals de la quinceañera.' },
+        { src: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80', category: 'empresarial', title: 'Networking Empresarial', description: 'Evento de networking en nuestros jardines.' },
     ];
 
     function renderGallery(items) {
@@ -46,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="gallery-item ${item.category}">
                 <img src="${item.src}" alt="${item.title}" class="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer transition-transform duration-300 hover:scale-105">
                 <p class="mt-2 text-center text-gray-600">${item.title}</p>
+                <button class="ver-mas mt-2 bg-primary text-white px-4 py-2 rounded-full hover:bg-secondary transition-colors" data-category="${item.category}" data-title="${item.title}">Ver más</button>
             </div>
         `).join('');
     }
@@ -83,21 +89,20 @@ document.addEventListener('DOMContentLoaded', function() {
     let gallerySlider;
 
     galleryContainer.addEventListener('click', (e) => {
-        const galleryItem = e.target.closest('.gallery-item');
-        if (galleryItem) {
-            const category = galleryItem.classList[1];
-            const title = galleryItem.querySelector('p').textContent;
-            const clickedSrc = galleryItem.querySelector('img').src;
+        if (e.target.classList.contains('ver-mas')) {
+            const category = e.target.getAttribute('data-category');
+            const title = e.target.getAttribute('data-title');
             
             modalTitle.textContent = title;
             
             const filteredItems = galleryItems.filter(item => item.category === category);
-            const startIndex = filteredItems.findIndex(item => item.src === clickedSrc);
+            const clickedItem = filteredItems.find(item => item.title === title);
             
             const modalContent = document.querySelector('.gallery-slider .swiper-wrapper');
             modalContent.innerHTML = filteredItems.map(item => `
                 <div class="swiper-slide">
                     <img src="${item.src}" alt="${item.title}" class="w-full h-full object-contain">
+                    <p class="mt-4 text-gray-600">${item.description}</p>
                 </div>
             `).join('');
 
@@ -109,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             gallerySlider = new Swiper('.gallery-slider', {
-                initialSlide: startIndex,
+                initialSlide: filteredItems.indexOf(clickedItem),
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
@@ -132,7 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
         { name: 'María García', text: 'Nuestra boda en Jardines de Roldán fue un sueño hecho realidad. El lugar es hermoso y el servicio impecable.', rating: 5 },
         { name: 'Juan Pérez', text: 'Organizamos un evento corporativo y quedamos muy satisfechos. Las instalaciones son excelentes y el personal muy profesional.', rating: 4 },
         { name: 'Ana Rodríguez', text: 'La fiesta de 15 de mi hija fue perfecta. Todos nuestros invitados quedaron encantados con el lugar.', rating: 5 },
-        // Añade más testimonios aquí...
     ];
 
     const testimonialsWrapper = document.querySelector('.testimonials-slider .swiper-wrapper');
